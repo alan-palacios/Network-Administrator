@@ -15,7 +15,12 @@ module.exports = {
         gray:{
           light: '#8B8B8B',
           medium: '#4D4D4D',
-          dark: '#373737'
+          dark: '#373737',
+          transparent: 'rgba(55,55,55,0.6)'
+        },
+        black:{
+          DEFAULT:'#000',
+          transparent: 'rgba(0,0,0,0.6)'
         }
       },
       borderWidth:{

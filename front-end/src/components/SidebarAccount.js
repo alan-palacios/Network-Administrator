@@ -12,7 +12,7 @@ export default function SidebarAccount() {
 		});
 	};
 	return (
-		<div className='pt-5 bg-gray-dark bg-opacity-70 fixed top-0 w-60 h-screen flex flex-col shadow-lg'>
+		<div className='pt-5 to-black-transparent from-gray-transparent bg-gradient-to-b bg-opacity-70 fixed top-0 w-60 h-screen flex flex-col shadow-lg'>
 			<div className='flex mb-2 px-5 '>
 				<div className='flex  mr-3'>
 					<img src={redstone} className='m-auto w-10'  />
@@ -23,25 +23,25 @@ export default function SidebarAccount() {
 				<Link to="/network" className=' p-3 px-8 hover:bg-red'>
 					Your Network
 				</Link>
-				<Link to="/register" className=' p-3 px-8 hover:bg-red'>
+				<Link to="/live" className=' p-3 px-8 hover:bg-red'>
 					Live Monitoring
 				</Link>
-				<Link to="/register" className=' p-3 px-8 hover:bg-red'>
+				<Link to="/updates" className=' p-3 px-8 hover:bg-red'>
 					Updates
 				</Link>
-				<Link to="/register" className=' p-3 px-8 hover:bg-red'>
+				<Link to="/protocol" className=' p-3 px-8 hover:bg-red'>
 					Protocol
 				</Link>
-				<Link to="/register" className=' p-3 px-8 hover:bg-red'>
-					Devices
+				<Link to="/routers" className=' p-3 px-8 hover:bg-red'>
+					Routers
 				</Link>
-				<Link to="/register" className=' p-3 px-8 hover:bg-red'>
+				<Link to="/users" className=' p-3 px-8 hover:bg-red'>
 					Users
 				</Link>
-				<Link to="/register" className=' p-3 px-8 hover:bg-red'>
+				<Link to="/alerts" className=' p-3 px-8 hover:bg-red'>
 					Alerts
 				</Link>
-				<Link to="/register" className=' p-3 px-8 hover:bg-red'>
+				<Link to="/account" className=' p-3 px-8 hover:bg-red'>
 					Account
 				</Link>
 				<button className='appearance-none font-bold text-left p-3 px-8 hover:bg-red '
