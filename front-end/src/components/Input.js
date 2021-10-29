@@ -5,7 +5,8 @@ export default function Input({label, placeholder, className}) {
 		<div className='flex-col flex text-left space-y-3 text-white'>
 			<label className='font-bold'>{label}</label>
 			<input placeholder={placeholder}
-					className='h-12 rounded-lg px-3 border-1 border-gray-400 bg-transparent ' />	
+					className='h-12 rounded-lg px-3 border-1 border-gray-400 
+								bg-transparent ring-0 outline-none focus:border-white ' />	
 		</div>
 	)
 }
