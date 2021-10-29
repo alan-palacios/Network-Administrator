@@ -1,32 +1,21 @@
-import logo from "./logo.svg";
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
+import Navbar from "./components/Navbar";
+import AuthContext from "./context/AuthContext";
+import useProviderAuth from "./hooks/useProviderAuth";
+import LoginRoutes from "./navigation/LoginRoutes";
 
 function App() {
   return (
-    <div className="mt-20">
-      <img className="m-auto" src={logo} width="300" height="200" alt="logo" />
-      <div className="text-center">
-        <h1 className="text-7xl text-green-900 font-bold">
-          Introducing Reactwind
-        </h1>
-        <p className="mt-5 text-lg">
-          React with a Utility-First CSS Framework for Rapid Development
-        </p>
-      </div>
-      <div className="text-center mt-10">
-        <a
-          href="https://reactjs.org/docs/getting-started.html"
-          className="mr-5 bg-green-700 hover:bg-green-900 text-white font-bold py-4 px-8 rounded-lg"
-        >
-          Learn React
-        </a>
-        <a
-          href="https://tailwindcss.com/docs"
-          className="mr-5 bg-green-700 hover:bg-green-900 text-white font-bold py-4 px-8 rounded-lg"
-        >
-          Learn TailwindCSS
-        </a>
-      </div>
-    </div>
+    <AuthContext.Provider value={useProviderAuth} >
+      <BrowserRouter>
+        <div className="h-screen from-black to-red-dark bg-gradient-to-t w-full text-white">
+          <Navbar />
+          <div className="flex h-screen">
+            <LoginRoutes />
+          </div>
+        </div>
+      </BrowserRouter>
+    </AuthContext.Provider>
   );
 }
 
