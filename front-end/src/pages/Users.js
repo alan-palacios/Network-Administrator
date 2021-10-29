@@ -1,12 +1,69 @@
+import { Icon } from '@iconify/react'
 import React from 'react'
+import ButtonIcon from '../components/ButtonIcon'
 import Title from '../components/Title'
 
 export default function Users() {
+	const users = [
+		"name1",
+		"name2",
+		"name3"
+	]
 	return (
-		<div className='bg-opacity-70 w-1/3 m-auto h-screen py-20 text-center'>
+		<div className='bg-opacity-70 w-2/3 pl-60 m-auto h-screen py-20 text-center'>
 			<Title>
 				Users
 			</Title>
+			<div className='flex space-x-20'>
+				<div className='w-1/2'>
+					<div className='flex h-auto  mt-10'>
+						<h1 className='font-bold text-left  text-xl'>Network Users</h1>
+						<button className='m-auto mr-0 '>
+							<Icon icon='carbon:add' width={30} />
+						</button>
+					</div>
+					<hr className='my-3'/>
+					<div className='flex flex-col space-y-5 mt-8'>
+						{users.map((user, i)=>{
+							return (
+								<div key={i} className='w-full text-left flex'>
+									<span className='m-auto ml-0'>
+										{user}
+									</span>
+									<div className='m-auto mr-0 space-x-5'>
+										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} />
+										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'}/>
+									</div>
+								</div>
+							)
+						})}
+					</div>
+				</div>
+				<div className='w-1/2'>
+					<div className='flex h-auto  mt-10'>
+						<h1 className='font-bold text-left  text-xl'>Website Users</h1>
+						<button className='m-auto mr-0 '>
+							<Icon icon='carbon:add' width={30} />
+						</button>
+					</div>
+					<hr className='my-3'/>
+					<div className='flex flex-col space-y-5 mt-8'>
+						{users.map((user, i)=>{
+							return (
+								<div key={i} className='w-full text-left flex'>
+									<span className='m-auto ml-0'>
+										{user}
+									</span>
+									<div className='m-auto mr-0 space-x-5'>
+										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} />
+										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'}/>
+									</div>
+								</div>
+							)
+						})}
+					</div>
+				</div>
+			</div>
 		</div>
 	)
 }
