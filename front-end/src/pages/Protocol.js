@@ -9,7 +9,7 @@ export default function Protocol() {
 	const [opt, setOpt] = useState(false);
 
 	return (
-		<div className='bg-opacity-70 w-2/3 pl-60 m-auto h-screen py-20 text-center'>
+		<div className='bg-opacity-70 w-2/3  m-auto h-screen py-20 text-center'>
 			<Title>
 				Protocolo
 			</Title>

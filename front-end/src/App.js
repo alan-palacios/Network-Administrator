@@ -10,9 +10,9 @@ function App() {
   return (
     <AuthContext.Provider value={useProviderAuth()} >
       <BrowserRouter>
-        <div className="h-screen from-black to-red-dark bg-gradient-to-t w-full text-white">
+        <div className="h-screen from-black to-red-dark bg-gradient-to-t w-full text-white flex">
           <Navs />
-          <div className="flex h-screen">
+          <div className="flex h-screen w-full">
             <LoginRoutes />
           </div>
         </div>
