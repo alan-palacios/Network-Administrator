@@ -1,0 +1,4 @@
+enable
+config terminal
+router eigrp 1
+network 10.10.1.0
