@@ -2,11 +2,13 @@ import { Icon } from '@iconify/react'
 import React, {useState} from 'react'
 import ButtonIcon from '../components/ButtonIcon'
 import Title from '../components/Title'
+import useAuth from '../hooks/useAuth';
 import AddUserModal from './modals/AddUserModal';
 import DeleteModal from './modals/DeleteModal';
 import EditUserModal from './modals/EditUserModal';
 
 export default function Users() {
+	const auth = useAuth();
 	const [showEdit, setShowEdit] = useState(false);
 	const [showAdd, setShowAdd] = useState(false);
 	const [showDelete, setShowDelete] = useState(false);
@@ -20,16 +22,43 @@ export default function Users() {
 
 	function addUser(user) {
 		console.log(user);	
+		/*
+		auth.request("users/","POST", user)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
+		*/
 		setShowAdd(false);
 	}
 	function editUser(user) {
 		console.log(user);	
 		console.log('edited user: '+id);
 		setShowEdit(false);
+		/*
+		auth.request("users/","PUT", user)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
+		*/
 	}
 	function deleteUser() {
 		console.log('delete user: '+id);
 		setShowDelete(false);
+		/*
+		auth.request(`users/${id}`,"DELETE")
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
+		*/
 	}
 
 	function selectEdit(i) {

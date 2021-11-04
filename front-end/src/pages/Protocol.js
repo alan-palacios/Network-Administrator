@@ -2,14 +2,25 @@ import React, { useState } from 'react'
 import Checkbox from '../components/Checkbox';
 import Select from '../components/Select'
 import Title from '../components/Title'
+import useAuth from '../hooks/useAuth';
 
 export default function Protocol() {
+	const auth = useAuth();
 	const options = ["RIP v2", "OSPF", "Static"];
 	const [protocol, setProtocol] = useState(0);
 	const [opt, setOpt] = useState(false);
 
 	function changeProtocol(i) {
 		setProtocol(i);
+		/*
+		auth.request("protocols/","POST")
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
+		*/
 		console.log('protocol change ');	
 	}
 
