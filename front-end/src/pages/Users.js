@@ -10,23 +10,49 @@ export default function Users() {
 	const [showEdit, setShowEdit] = useState(false);
 	const [showAdd, setShowAdd] = useState(false);
 	const [showDelete, setShowDelete] = useState(false);
+	const [id, setId] = useState(0);
+
 	const users = [
 		"name1",
 		"name2",
 		"name3"
 	]
 
+	function addUser(user) {
+		console.log(user);	
+		setShowAdd(false);
+	}
+	function editUser(user) {
+		console.log(user);	
+		console.log('edited user: '+id);
+		setShowEdit(false);
+	}
+	function deleteUser() {
+		console.log('delete user: '+id);
+		setShowDelete(false);
+	}
+
+	function selectEdit(i) {
+		setShowEdit(!showEdit);
+		setId(i);
+	}
+
+	function selectDelete(i) {
+		setShowDelete(!showDelete);
+		setId(i);
+	}
+
 	return (
 		<div className='bg-opacity-70 w-full  m-auto h-screen py-20 text-center 
 		lg:w-2/3 relative'>
 			{showEdit?
-				<EditUserModal onClose={()=>setShowEdit(false)} />
+				<EditUserModal onClose={()=>setShowEdit(false)} onConfirm={editUser} />
 			:''}
 			{showAdd?
-				<AddUserModal onClose={()=>setShowAdd(false)} />
+				<AddUserModal onClose={()=>setShowAdd(false)} onConfirm={addUser}/>
 			:''}
 			{showDelete?
-				<DeleteModal onClose={()=>setShowDelete(false)} onCancel={()=>setShowDelete(false)} />
+				<DeleteModal onClose={()=>setShowDelete(false)} onCancel={()=>setShowDelete(false)} onConfirm={deleteUser} />
 			:''}
 			<Title>
 				Users
@@ -48,8 +74,8 @@ export default function Users() {
 										{user}
 									</span>
 									<div className='m-auto mr-0 space-x-5'>
-										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} onClick={()=>setShowEdit(!showEdit)}  />
-										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'} onClick={()=>setShowDelete(!showDelete)}/>
+										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} onClick={()=>selectEdit(i)}  />
+										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'} onClick={()=>selectDelete(i)}/>
 									</div>
 								</div>
 							)
@@ -72,8 +98,8 @@ export default function Users() {
 										{user}
 									</span>
 									<div className='m-auto mr-0 space-x-5'>
-										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} onClick={()=>setShowEdit(!showEdit)}/>
-										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'} onClick={()=>setShowDelete(!showDelete)}/>
+										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} onClick={()=>selectEdit(i)}/>
+										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'} onClick={()=>selectDelete(i)}/>
 									</div>
 								</div>
 							)

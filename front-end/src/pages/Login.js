@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import {  Redirect } from 'react-router-dom'
 import Button from '../components/Button'
 import Input from '../components/Input'
@@ -6,13 +7,16 @@ import Title from '../components/Title'
 import useAuth from '../hooks/useAuth'
 
 export default function Login() {
+	const [email, setEmail] = useState('emailtest');
+	const [password, setPassword] = useState('psw');
 	const auth = useAuth();
 
 	function login() {
 		const user={
-			email:"j",
-			password:"sdf"
+			email,
+			password
 		}
+		console.log(user);
 		auth.signin(user, () => {
 			console.log('logged');
 		});
@@ -30,8 +34,8 @@ export default function Login() {
 						Login	
 					</Title>
 					<div className='space-y-10 my-16'>
-						<Input placeholder={'username'} label={'Username'} />
-						<Input placeholder={'username'} label={'Username'} />
+						<Input placeholder={'email'} label={'Email'} value={email} onChange={setEmail}/>
+						<Input placeholder={'password'} label={'Password'} value={password} onChange={setPassword}/>
 					</div>
 					<Button label={'Login'} onClick={login} />
 				</div>

@@ -6,7 +6,6 @@ import { Icon } from '@iconify/react'
 
 export default function SidebarAccount() {
 	const auth = useAuth();
-
 	function logout() {
 		auth.signout(() => {
 			console.log('logged');
@@ -18,7 +17,7 @@ export default function SidebarAccount() {
 				<div className='flex  mr-3'>
 					<img src={redstone} className='m-auto w-10' alt="logo" />
 				</div>
-				<h3 className='font-bold text-xl my-auto'>Username</h3>
+				<h3 className='font-bold text-xl my-auto'>{auth.user.email}</h3>
 			</div>
 			<div className='flex flex-col w-full font-bold '>
 				<Link to="/network" className='py-3 px-5 space-x-5 hover:bg-red flex '>

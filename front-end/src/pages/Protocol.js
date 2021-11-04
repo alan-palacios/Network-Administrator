@@ -8,15 +8,21 @@ export default function Protocol() {
 	const [protocol, setProtocol] = useState(0);
 	const [opt, setOpt] = useState(false);
 
+	function changeProtocol(i) {
+		setProtocol(i);
+		console.log('protocol change ');	
+	}
+
 	return (
 		<div className='bg-opacity-70 w-2/3  m-auto h-screen py-20 text-center'>
 			<Title>
 				Protocolo
+				{options[protocol]}
 			</Title>
 			<hr className='my-8'/>
 			<div className='w-full'>
 				<div className='w-1/2 px-5 flex-col space-y-5'>
-					<Select options={options} value={protocol} onChange={setProtocol} label={'Routing Protocol'}/>
+					<Select options={options} value={protocol} onChange={(i)=>changeProtocol(i)} label={'Routing Protocol'}/>
 					<Checkbox label={'Passive'} value={opt} onChange={setOpt}/>
 				</div>
 				<div className='w-1/2'>
