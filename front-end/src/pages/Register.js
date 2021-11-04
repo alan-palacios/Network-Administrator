@@ -18,13 +18,13 @@ export default function Register() {
 		};
 		console.log(user);
 		setRedirect(true);	
-        /*api("app_users/", "POST", user)
+        api("app-user/", "POST", user)
 		.then(res => {
 			console.log(res);
 		})
         .catch((error) =>{
 			console.log(error);
-        });*/
+        });
 	}
 	if (redirect) return <Redirect to='/login'/>;
 	return (
