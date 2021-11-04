@@ -32,3 +32,26 @@ class router_usuario:
         output = net_connect.send_command_timing(command)
         print(output)
         net_connect.disconnect()
+
+class configuracion_router:
+    def comandos_protocolo(protocolo):
+        commands = ""
+        if protocolo == 'RIP' :
+            f = open("command_RIP.txt", "r")
+            commands=f.read()
+        elif protocolo=='OSPF':
+            f=open("command_OSPF.txt", "r")
+            commands=r.read()
+        elif protocolo=='EIGRP' :
+            f = open("command_EIGRP.txt", "r")
+            commands=r.read()
+        return commands
+
+    def cambiar_enrutamiento(ip, usuario, contrasena, protocolo, os='cisco_ios'):
+        net_connect = conexion_router.conectar(ip, usuario, contrasena, os)
+        commands = configuracion_router.comandos_protocolo(protocolo)
+        print(commands)
+        output = net_connect.send_command_timing(commands)
+        print(output)
+        net_connect.disconnect()
+
