@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <div className="h-screen from-black to-red-dark bg-gradient-to-t w-full text-white flex">
           <Navs />
-          <div className="flex h-screen w-full">
+          <div className="flex h-screen w-full overflow-y-auto">
             <LoginRoutes />
           </div>
         </div>

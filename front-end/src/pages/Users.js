@@ -19,44 +19,50 @@ export default function Users() {
 	const [showEditRouter, setShowEditRouter] = useState(false);
 	const [id, setId] = useState(0);
 
-	const users = [
+	const [appUsers, setAppUsers] = useState([
 		"name1",
 		"name2",
 		"name3"
-	]
+	]);
+	const [deviceUsers, setDeviceUsers] = useState([
+		"device1",
+		"device2",
+		"device3"
+	]);
 
 	useEffect(() => {
-		/*
-		auth.request("app-users/","GET", user)
+		auth.request("app-user/","GET")
 			.then(res => {
 				console.log(res);
+				//setAppUsers(res);
 			})
 			.catch((error) =>{
 				console.log(error);
 			});
-		auth.request("device-users/","GET", user)
+		auth.request("device-user/","GET")
 			.then(res => {
 				console.log(res);
+				//setDeviceUsers(res);
 			})
 			.catch((error) =>{
 				console.log(error);
 			});
-		*/
 	}, [auth])
 
 	function addUser(user) {
 		console.log(user);	
-		/*
-		auth.request("app_users/","POST", user)
+		
+		auth.request("app-user/","POST", user)
 			.then(res => {
 				console.log(res);
 			})
 			.catch((error) =>{
 				console.log(error);
 			});
-		*/
+		
 		setShowAdd(false);
 	}
+
 	function editUser(user) {
 		console.log(user);	
 		console.log('edited user: '+id);
@@ -72,16 +78,18 @@ export default function Users() {
 		*/
 	}
 	function addUserRouter(user) {
-		console.log(user);	
-		/*
-		auth.request("device_users/","POST", user)
+		user = {
+			...user,
+			admin: auth.user.username,
+			adminPass: auth.user.password	
+		}
+		auth.request("device-user/","POST", user)
 			.then(res => {
 				console.log(res);
 			})
 			.catch((error) =>{
 				console.log(error);
 			});
-		*/
 		setShowAddRouter(false);
 	}
 	function editUserRouter(user) {
@@ -101,15 +109,13 @@ export default function Users() {
 	function deleteUser() {
 		console.log('delete user: '+id);
 		setShowDelete(false);
-		/*
-		auth.request(`app_users/${id}`,"DELETE")
+		auth.request(`app-user/${id}`,"DELETE")
 			.then(res => {
 				console.log(res);
 			})
 			.catch((error) =>{
 				console.log(error);
 			});
-		*/
 	}
 
 	function selectEdit(i) {
@@ -157,7 +163,7 @@ export default function Users() {
 					</div>
 					<hr className='my-3'/>
 					<div className='flex flex-col space-y-5 mt-8'>
-						{users.map((user, i)=>{
+						{appUsers.map((user, i)=>{
 							return (
 								<div key={i} className='w-full text-left flex'>
 									<span className='m-auto ml-0'>
@@ -181,7 +187,7 @@ export default function Users() {
 					</div>
 					<hr className='my-3'/>
 					<div className='flex flex-col space-y-5 mt-8'>
-						{users.map((user, i)=>{
+						{deviceUsers.map((user, i)=>{
 							return (
 								<div key={i} className='w-full text-left flex'>
 									<span className='m-auto ml-0'>

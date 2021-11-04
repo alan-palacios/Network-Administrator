@@ -8,12 +8,14 @@ import useAuth from '../hooks/useAuth'
 
 export default function Login() {
 	const [email, setEmail] = useState('emailtest');
+	const [username, setUsername] = useState('username');
 	const [password, setPassword] = useState('psw');
 	const auth = useAuth();
 
 	function login() {
 		const user={
 			email,
+			username,
 			password
 		}
 		console.log(user);
@@ -35,6 +37,7 @@ export default function Login() {
 					</Title>
 					<div className='space-y-10 my-16'>
 						<Input placeholder={'email'} label={'Email'} value={email} onChange={setEmail}/>
+						<Input placeholder={'username'} label={'Username'} value={username} onChange={setUsername}/>
 						<Input placeholder={'password'} label={'Password'} value={password} onChange={setPassword}/>
 					</div>
 					<Button label={'Login'} onClick={login} />

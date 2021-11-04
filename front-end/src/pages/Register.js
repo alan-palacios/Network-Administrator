@@ -3,6 +3,7 @@ import Button from '../components/Button'
 import Input from '../components/Input'
 import Title from '../components/Title'
 import { Redirect } from 'react-router-dom';
+import api from '../api/api';
 
 export default function Register() {
 	const [username, setUsername] = useState('test');
@@ -16,11 +17,10 @@ export default function Register() {
 			email,
 			password
 		};
-		console.log(user);
-		setRedirect(true);	
         api("app-user/", "POST", user)
 		.then(res => {
 			console.log(res);
+			setRedirect(true);	
 		})
         .catch((error) =>{
 			console.log(error);

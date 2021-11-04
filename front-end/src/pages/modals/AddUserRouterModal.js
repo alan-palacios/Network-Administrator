@@ -7,13 +7,13 @@ import Title from '../../components/Title'
 
 export default function AddUserRouterModal({onClose, onConfirm}) {
 	const [username, setUsername] = useState('test');
-	const [email, setEmail] = useState('emailtest');
 	const [password, setPassword] = useState('psw');
+	const [ip, setIp] = useState('10.10.1.1');
 
 	function add() {
 		const user = {
+			ip,
 			username,
-			email,
 			password
 		}	
 		onConfirm(user);
@@ -32,8 +32,8 @@ export default function AddUserRouterModal({onClose, onConfirm}) {
 						Add Device User
 					</Title>
 					<div className='space-y-10 my-10 '>
+						<Input placeholder={'ip'} label={'ip'} value={ip} onChange={setIp} />
 						<Input placeholder={'username'} label={'Username'} value={username} onChange={setUsername} />
-						<Input placeholder={'email'} label={'E-mail'} value={email} onChange={setEmail}/>
 						<Input placeholder={'password'} label={'Password'} value={password} onChange={setPassword} type={'password'}/>
 					</div>
 					<Button label={'Add User'} className={'bg-green'} onClick={add} />
