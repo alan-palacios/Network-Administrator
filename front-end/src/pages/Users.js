@@ -18,6 +18,7 @@ export default function Users() {
 	const [showAddRouter, setShowAddRouter] = useState(false);
 	const [showEditRouter, setShowEditRouter] = useState(false);
 	const [id, setId] = useState(0);
+	const [type, setType] = useState(0);
 
 	const [appUsers, setAppUsers] = useState([
 		"name1",
@@ -107,15 +108,25 @@ export default function Users() {
 		*/
 	}
 	function deleteUser() {
-		console.log('delete user: '+id);
+		console.log('delete user: '+id+' type: '+type);
 		setShowDelete(false);
-		auth.request(`app-user/${id}`,"DELETE")
-			.then(res => {
-				console.log(res);
-			})
-			.catch((error) =>{
-				console.log(error);
-			});
+		if (type==0) {
+			auth.request(`app-user/${appUsers[id]}`,"DELETE")
+				.then(res => {
+					console.log(res);
+				})
+				.catch((error) =>{
+					console.log(error);
+				});
+		} else {
+			auth.request(`device-user/${deviceUsers[id]}`,"DELETE")
+				.then(res => {
+					console.log(res);
+				})
+				.catch((error) =>{
+					console.log(error);
+				});
+		}
 	}
 
 	function selectEdit(i) {
@@ -127,8 +138,9 @@ export default function Users() {
 		setId(i);
 	}
 
-	function selectDelete(i) {
+	function selectDelete(i,type) {
 		setShowDelete(!showDelete);
+		setType(type);
 		setId(i);
 	}
 
@@ -171,7 +183,7 @@ export default function Users() {
 									</span>
 									<div className='m-auto mr-0 space-x-5'>
 										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} onClick={()=>selectEdit(i)}  />
-										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'} onClick={()=>selectDelete(i)}/>
+										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'} onClick={()=>selectDelete(i,0)}/>
 									</div>
 								</div>
 							)
@@ -195,7 +207,7 @@ export default function Users() {
 									</span>
 									<div className='m-auto mr-0 space-x-5'>
 										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} onClick={()=>selectEditRouter(i)}/>
-										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'} onClick={()=>selectDelete(i)}/>
+										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'} onClick={()=>selectDelete(i,1)}/>
 									</div>
 								</div>
 							)
