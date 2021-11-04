@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const urlBase = "http://localhost:50000/";
+const urlBase = "http://0.0.0.0:5000/api";
 
 const readUrl = (url = '') =>
   url.startsWith('http://') || url.startsWith('https://') ? url : `${urlBase}/${url}`

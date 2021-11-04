@@ -1,17 +1,22 @@
 import { Icon } from '@iconify/react'
 import React, {useState} from 'react'
+import { useEffect } from 'react';
 import ButtonIcon from '../components/ButtonIcon'
 import Title from '../components/Title'
 import useAuth from '../hooks/useAuth';
 import AddUserModal from './modals/AddUserModal';
+import AddUserRouterModal from './modals/AddUserRouterModal';
 import DeleteModal from './modals/DeleteModal';
 import EditUserModal from './modals/EditUserModal';
+import EditUserRouterModal from './modals/EditUserRouterModal';
 
 export default function Users() {
 	const auth = useAuth();
 	const [showEdit, setShowEdit] = useState(false);
 	const [showAdd, setShowAdd] = useState(false);
 	const [showDelete, setShowDelete] = useState(false);
+	const [showAddRouter, setShowAddRouter] = useState(false);
+	const [showEditRouter, setShowEditRouter] = useState(false);
 	const [id, setId] = useState(0);
 
 	const users = [
@@ -20,10 +25,29 @@ export default function Users() {
 		"name3"
 	]
 
+	useEffect(() => {
+		/*
+		auth.request("app-users/","GET", user)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
+		auth.request("device-users/","GET", user)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
+		*/
+	}, [auth])
+
 	function addUser(user) {
 		console.log(user);	
 		/*
-		auth.request("users/","POST", user)
+		auth.request("app_users/","POST", user)
 			.then(res => {
 				console.log(res);
 			})
@@ -38,7 +62,34 @@ export default function Users() {
 		console.log('edited user: '+id);
 		setShowEdit(false);
 		/*
-		auth.request("users/","PUT", user)
+		auth.request("app_users/","PUT", user)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
+		*/
+	}
+	function addUserRouter(user) {
+		console.log(user);	
+		/*
+		auth.request("device_users/","POST", user)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
+		*/
+		setShowAddRouter(false);
+	}
+	function editUserRouter(user) {
+		console.log(user);	
+		console.log('edited user: '+id);
+		setShowEditRouter(false);
+		/*
+		auth.request("device_users/","PUT", user)
 			.then(res => {
 				console.log(res);
 			})
@@ -51,7 +102,7 @@ export default function Users() {
 		console.log('delete user: '+id);
 		setShowDelete(false);
 		/*
-		auth.request(`users/${id}`,"DELETE")
+		auth.request(`app_users/${id}`,"DELETE")
 			.then(res => {
 				console.log(res);
 			})
@@ -63,6 +114,10 @@ export default function Users() {
 
 	function selectEdit(i) {
 		setShowEdit(!showEdit);
+		setId(i);
+	}
+	function selectEditRouter(i) {
+		setShowEditRouter(!showEditRouter);
 		setId(i);
 	}
 
@@ -79,6 +134,12 @@ export default function Users() {
 			:''}
 			{showAdd?
 				<AddUserModal onClose={()=>setShowAdd(false)} onConfirm={addUser}/>
+			:''}
+			{showEditRouter?
+				<EditUserRouterModal onClose={()=>setShowEditRouter(false)} onConfirm={editUserRouter} />
+			:''}
+			{showAddRouter?
+				<AddUserRouterModal onClose={()=>setShowAddRouter(false)} onConfirm={addUserRouter}/>
 			:''}
 			{showDelete?
 				<DeleteModal onClose={()=>setShowDelete(false)} onCancel={()=>setShowDelete(false)} onConfirm={deleteUser} />
@@ -114,7 +175,7 @@ export default function Users() {
 				<div className='w-1/2'>
 					<div className='flex h-auto  mt-10'>
 						<h1 className='font-bold text-left  text-xl'>Website Users</h1>
-						<button className='m-auto mr-0 ' onClick={()=>setShowAdd(!showAdd)}>
+						<button className='m-auto mr-0 ' onClick={()=>setShowAddRouter(!showAddRouter)}>
 							<Icon icon='carbon:add' width={30} />
 						</button>
 					</div>
@@ -127,7 +188,7 @@ export default function Users() {
 										{user}
 									</span>
 									<div className='m-auto mr-0 space-x-5'>
-										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} onClick={()=>selectEdit(i)}/>
+										<ButtonIcon icon={'carbon:edit'} className={'bg-green'} onClick={()=>selectEditRouter(i)}/>
 										<ButtonIcon icon={'carbon:trash-can'} className={'bg-red'} onClick={()=>selectDelete(i)}/>
 									</div>
 								</div>

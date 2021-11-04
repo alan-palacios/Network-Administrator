@@ -18,7 +18,7 @@ export default function Register() {
 		};
 		console.log(user);
 		setRedirect(true);	
-        /*api("user/", "POST", user)
+        /*api("app_users/", "POST", user)
 		.then(res => {
 			console.log(res);
 		})
