@@ -2,13 +2,13 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Account from '../pages/Account'
 import Alerts from '../pages/Alerts'
+import AlertsSettings from '../pages/AlertsSettings'
 import LiveMonitoring from '../pages/LiveMonitoring'
 import Login from '../pages/Login'
 import Network from '../pages/Network'
 import Protocol from '../pages/Protocol'
 import Register from '../pages/Register'
 import Routers from '../pages/Routers'
-import Updates from '../pages/Updates'
 import Users from '../pages/Users'
 import PrivateRoute from './PrivateRoute'
 
@@ -27,8 +27,8 @@ export default function LoginRoutes() {
       <PrivateRoute path="/live">
         <LiveMonitoring />
       </PrivateRoute>
-      <PrivateRoute path="/updates">
-        <Updates />
+      <PrivateRoute path="/alerts">
+        <Alerts />
       </PrivateRoute>
       <PrivateRoute path="/protocol">
         <Protocol />
@@ -39,8 +39,8 @@ export default function LoginRoutes() {
       <PrivateRoute path="/users">
         <Users />
       </PrivateRoute>
-      <PrivateRoute path="/alerts">
-        <Alerts />
+      <PrivateRoute path="/alerts-settings">
+        <AlertsSettings />
       </PrivateRoute>
       <PrivateRoute path="/account">
         <Account />

@@ -1,11 +1,11 @@
 import React from 'react'
 import Title from '../components/Title'
 
-export default function Updates() {
+export default function AlertsSettings() {
 	return (
 		<div className='bg-opacity-70 w-1/3 m-auto h-screen py-20 text-center'>
 			<Title>
-				Alerts
+				Alerts Settings
 			</Title>
 		</div>
 	)
