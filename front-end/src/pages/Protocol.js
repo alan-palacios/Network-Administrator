@@ -6,21 +6,25 @@ import useAuth from '../hooks/useAuth';
 
 export default function Protocol() {
 	const auth = useAuth();
-	const options = ["RIP v2", "OSPF", "Static"];
+	const options = ["RIP", "OSPF", "EIGRP"];
 	const [protocol, setProtocol] = useState(0);
 	const [opt, setOpt] = useState(false);
 
 	function changeProtocol(i) {
 		setProtocol(i);
-		/*
-		auth.request("protocols/","POST")
+		const data = {
+			protocol: options[i],
+			admin: auth.user.username,
+			adminPass: auth.user.password,
+			ip: '10.10.1.1'
+		}
+		auth.request("router/protocol/","POST", data)
 			.then(res => {
 				console.log(res);
 			})
 			.catch((error) =>{
 				console.log(error);
 			});
-		*/
 		console.log('protocol change ');	
 	}
 

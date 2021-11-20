@@ -110,7 +110,7 @@ export default function Users() {
 	function deleteUser() {
 		console.log('delete user: '+id+' type: '+type);
 		setShowDelete(false);
-		if (type==0) {
+		if (type===0) {
 			auth.request(`app-user/${appUsers[id]}`,"DELETE")
 				.then(res => {
 					console.log(res);

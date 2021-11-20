@@ -30,7 +30,7 @@ export default function SidebarAccount() {
 				</Link>
 				<Link to="/updates" className=' py-3 px-5 space-x-5 hover:bg-red flex'>
 					<Icon icon='carbon:update-now' width={30} className="m-auto " />
-					<span className="m-auto  w-full">Updates</span>
+					<span className="m-auto  w-full">Alerts</span>
 				</Link>
 				<Link to="/protocol" className=' py-3 px-5 space-x-5 hover:bg-red flex'>
 					<Icon icon='carbon:network-admin-control' width={30} className="m-auto " />
@@ -46,7 +46,7 @@ export default function SidebarAccount() {
 				</Link>
 				<Link to="/alerts" className=' py-3 px-5 space-x-5 hover:bg-red flex'>
 					<Icon icon='carbon:notification' width={30} className="m-auto " />
-					<span className="m-auto  w-full">Alerts</span>
+					<span className="m-auto  w-full">Alerts Settings</span>
 				</Link>
 				<Link to="/account" className=' py-3 px-5 space-x-5 hover:bg-red flex'>
 					<Icon icon='carbon:user' width={30} className="m-auto " />

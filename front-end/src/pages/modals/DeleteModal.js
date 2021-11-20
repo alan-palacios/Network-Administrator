@@ -6,7 +6,7 @@ import Title from '../../components/Title'
 export default function DeleteModal({onClose, onConfirm, onCancel}) {
 
 	return (
-		<div className="absolute w-full py-32 px-60 ">
+		<div className="absolute w-auto py-22 px-60 ">
 			<div className='bg-gray-dark h-full rounded-2xl text-center m-auto  '>
 				<div className="flex p-3">
 					<button onClick={onClose} className="mr-0 m-auto">
