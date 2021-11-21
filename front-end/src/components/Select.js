@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Icon } from '@iconify/react';
 
-export default function Select({label, options, value, onChange}) {
+export default function Select({label, options, value, onChange, className}) {
 	const [show, setShow] = useState(false);
 
 	function changeSelection(i) {
@@ -10,7 +10,7 @@ export default function Select({label, options, value, onChange}) {
 	}
 
 	return (
-		<div className='flex-col flex text-left space-y-3 text-white'>
+		<div className={`flex-col flex text-left space-y-3 text-white ${className}`}>
 			<label className='font-bold'>{label}</label>
 			<button className='h-12 rounded-lg px-3 border-1 border-gray-400 
 								bg-transparent ring-0 outline-none focus:border-white flex '
