@@ -1,0 +1,37 @@
+version: "3.7"
+services:
+  api-service:
+    build:
+      context: ./api/
+      dockerfile: Dockerfile
+    image: project-api
+    container_name: project-api-server
+    volumes:
+      - ./api/:/usr/src/app/
+    ports:
+      - 5000:5000
+    depends_on:
+      - db-service
+    networks:
+      - project-network
+    environment:
+      PORT: 5000
+      FLASK_DEBUG: 1
+      DB_CONN: mongodb://db-service:27017/
+      DB_NAME: db-project
+
+  db-service:
+    image: mongo:4.4
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - project-network
+
+networks:
+  project-network:
+    driver: bridge
+
+volumes:
+  data-volume:
