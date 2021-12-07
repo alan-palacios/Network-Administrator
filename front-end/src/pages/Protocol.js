@@ -3,6 +3,7 @@ import Checkbox from '../components/Checkbox';
 import Select from '../components/Select'
 import Title from '../components/Title'
 import useAuth from '../hooks/useAuth';
+import Button from '../components/Button';
 
 export default function Protocol() {
 	const auth = useAuth();
@@ -40,8 +41,7 @@ export default function Protocol() {
 					<Select options={options} value={protocol} onChange={(i)=>changeProtocol(i)} label={'Routing Protocol'}/>
 					<Checkbox label={'Passive'} value={opt} onChange={setOpt}/>
 				</div>
-				<div className='w-1/2'>
-				</div>
+				<Button label="Save" />
 			</div>
 		</div>
 	)
