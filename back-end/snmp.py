@@ -2,7 +2,7 @@ from pysnmp import hlapi
 from pysnmp.hlapi import *
 
 class SNMPC:
-    def get(self,target, oids, usr, aKey, pKey):
+    def get(self, target, oids, usr, aKey, pKey):
         handler = hlapi.getCmd(
             hlapi.SnmpEngine(),
             hlapi.UsmUserData(usr, authKey = aKey, privKey = pKey, authProtocol=hlapi.usmHMACSHAAuthProtocol, privProtocol=hlapi.usmDESPrivProtocol),
@@ -67,6 +67,37 @@ class SNMPC:
             except StopIteration:
                 break
         return result
+
+    def get_bulk_auto(target, oids, usr, aKey, pKey, count_oid, start_from=0):
+        count = self.get(target, [count_oid], usr, aKey, pKey)[count_oid]
+        return self.getBulk(target, oids, usr, aKey, pKey, count, start_from)
+
+    def get_paquetes_entrada(target,usr,aKey,pKey):
+        aux = get_bulk_auto(target,['1.3.6.1.2.1.2.2.1.2','1.3.6.1.2.1.2.2.1.11'],usr,aKey,pKey,'1.3.6.1.2.1.2.1.0')
+        Interfaces=dict()
+        for dato in aux:
+            val=list(dato.values())
+            if val[0]!='Null':
+                Interfaces[val[0]]=val[1]
+        return Interfaces      
+
+    def get_paquetes_salida(direccionIp, usr, aKey, pKey):
+        aux = get_bulk_auto(direccionIp,['1.3.6.1.2.1.2.2.1.2','1.3.6.1.2.1.2.2.1.17'],usr,aKey,pKey,'1.3.6.1.2.1.2.1.0')
+        Interfaces=dict()
+        for dato in aux:
+            val=list(dato.values())
+            if val[0]!='Null':
+                Interfaces[val[0]]=val[1]
+        return Interfaces                         
+
+    def get_paquetes_daniados(direccionIp, usr, aKey, pKey):    
+        aux = get_bulk_auto(direccionIp,['1.3.6.1.2.1.2.2.1.2','1.3.6.1.2.1.2.2.1.14'],usr,aKey,pKey,'1.3.6.1.2.1.2.1.0') 
+        Interfaces=dict()
+        for dato in aux:
+            val=list(dato.values())
+            if val[0]!='Null':
+                Interfaces[val[0]]=val[1]
+        return Interfaces  
 
 oids = ['1.3.6.1.2.1.1.4.0', '1.3.6.1.2.1.1.1.0', '1.3.6.1.2.1.1.5.0', '1.3.6.1.2.1.1.6.0']
 target = 'google.com'
