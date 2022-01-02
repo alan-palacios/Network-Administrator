@@ -38,7 +38,7 @@ export default function Login() {
 					<div className='space-y-10 my-12'>
 						<Input placeholder={'email'} label={'Email'} value={email} onChange={setEmail}/>
 						<Input placeholder={'username'} label={'Username'} value={username} onChange={setUsername}/>
-						<Input placeholder={'password'} label={'Password'} value={password} onChange={setPassword}/>
+						<Input placeholder={'password'} label={'Password'} value={password} onChange={setPassword} type={'password'}/>
 					</div>
 					<Button label={'Login'} onClick={login} />
 				</div>

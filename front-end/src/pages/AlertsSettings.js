@@ -1,17 +1,19 @@
 import { Icon } from '@iconify/react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import Title from '../components/Title'
+import useAuth from '../hooks/useAuth'
 
 export default function AlertsSettings() {
-	const devices = ["Router 1", "Router 2", "Router 3"];
+	const auth = useAuth();
+	const [devices, setDevices] = useState(["Router 1", "Router 2", "Router 3"])
 	const [device, setDevice] = useState(0)
-	const interfaces = ["fa 1", "fa 2", "fa 3"];
+	const [interfaces, setInterfaces] = useState(["fa 1", "fa 2", "fa 3"])
 	const [inter, setInter] = useState(0)
-	const links = ["1-2", "2-4", "3-1"];
+	const [links, setLinks] = useState(["1-2", "2-4", "3-1"])
 	const [link, setLink] = useState(0)
 	const [deviceAlerts, setdeviceAlerts] = useState(
 	{
@@ -92,13 +94,53 @@ export default function AlertsSettings() {
 	}
 	function sendDeviceAlerts() {
 		console.log(deviceAlerts);	
+		auth.request("app-user/deviceAlerts","POST", deviceAlerts)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
 	}
 	function sendInterfaceAlerts() {
 		console.log(interfaceAlerts);	
+		auth.request("app-user/interfaceAlerts","POST", interfaceAlerts)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
 	}
 	function sendLinkAlerts() {
 		console.log(linkAlerts);	
+		auth.request("app-user/linkAlerts","POST", linkAlerts)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
 	}
+
+	useEffect(() => {
+		auth.request("app-user/alertsettings","GET")
+			.then(res => {
+				console.log(res);
+				/*
+				setdeviceAlerts(res.deviceAlerts);
+				setInterfaceAlerts(res.interfaceAlerts);
+				setLinkAlerts(res.linkAlerts);
+				setDevices(res.devices)
+				setInterfaces(res.interfaces)
+				setLinks(res.links)
+				*/
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
+	}, [auth])
+
 	return (
 		<div className='bg-opacity-70 w-2/3 m-auto h-screen py-20 text-center'>
 			<Title>

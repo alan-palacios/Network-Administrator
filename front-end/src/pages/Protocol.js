@@ -13,8 +13,11 @@ export default function Protocol() {
 
 	function changeProtocol(i) {
 		setProtocol(i);
+	}
+
+	function saveProtocol() {
 		const data = {
-			protocol: options[i],
+			protocol: options[protocol],
 			admin: auth.user.username,
 			adminPass: auth.user.password,
 			ip: '10.10.1.1'
@@ -26,7 +29,7 @@ export default function Protocol() {
 			.catch((error) =>{
 				console.log(error);
 			});
-		console.log('protocol change ');	
+		console.log('protocol change to '+options[protocol]);	
 	}
 
 	return (
@@ -37,11 +40,10 @@ export default function Protocol() {
 			</Title>
 			<hr className='my-8'/>
 			<div className='w-full'>
-				<div className='w-1/2 px-5 flex-col space-y-5'>
+				<div className='w-1/2 px-5 flex-col space-y-5 '>
 					<Select options={options} value={protocol} onChange={(i)=>changeProtocol(i)} label={'Routing Protocol'}/>
-					<Checkbox label={'Passive'} value={opt} onChange={setOpt}/>
+					<Button label="Save" onClick={saveProtocol} />
 				</div>
-				<Button label="Save" />
 			</div>
 		</div>
 	)

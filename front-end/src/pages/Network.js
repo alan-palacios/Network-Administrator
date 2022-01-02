@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Button from '../components/Button'
-import Input from '../components/Input'
 import Title from '../components/Title'
+import useAuth from '../hooks/useAuth'
 import Plotter from '../Plotter'
 
 export default function Network() {
-	const [time, setTime] = useState(10);
+	const auth = useAuth();
 	const elementss={
 		nodes:[
 			{ data:{id: 'router1'}},
@@ -17,12 +16,16 @@ export default function Network() {
 	}
 
 	useEffect(() => {
+		auth.request("app-user/network","GET")
+			.then(res => {
+				console.log(res);
+				//Plotter.init(res.elementss,'cy');
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
 		Plotter.init(elementss,'cy');
-	}, [])
-
-	function updateTime() {
-		console.log(time);	
-	}
+	}, [auth])
 
 	return (
 		<div className='bg-opacity-70 w-1/3 m-auto h-screen py-20 text-center '>
@@ -30,10 +33,6 @@ export default function Network() {
 				Your network
 			</Title>
 			<div id="cy" className="w-100 h-96 bg-white rounded-xl my-10" />
-			<div className="flex space-x-5">
-				<Input label="Update Time" value={time} onChange={setTime} />
-				<Button label="Save" className="m-auto mb-0" onClick={updateTime}/>
-			</div>
 		</div>
 	)
 }

@@ -3,8 +3,10 @@ import Select from '../components/Select';
 import Title from '../components/Title'
 import Input from '../components/Input'
 import Button from '../components/Button';
+import useAuth from '../hooks/useAuth';
 
 export default function Routers() {
+	const auth = useAuth();
 	const routers = ["Router 1", "Router 2", "Router 3"];
 	const [router, setRouter] = useState(0)
 	const [hostname, setHostname] = useState('hostname');
@@ -18,12 +20,19 @@ export default function Routers() {
 
 	function upadateDeviceInfo() {
 		const device={
-			router,
+			router:router+1,
 			hostname,
 			responsable,
 			location,
 			contact
 		};
+		auth.request("router/info","POST", device)
+			.then(res => {
+				console.log(res);
+			})
+			.catch((error) =>{
+				console.log(error);
+			});
 		console.log(device);
 	}
 	return (
